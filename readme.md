@@ -1,4 +1,4 @@
-# Mode d'emploie
+# Mode d'emploi
 
 Pour faire fonctionner le projet en local :
 
@@ -7,6 +7,5 @@ Pour faire fonctionner le projet en local :
 3. Installer les librairies dans "requirements.txt" `pip install -r requirements.txt`
 4. Appliquer les migrations existantes `python manage.py migrate`
 5. Lancer le serveur `python manage.py runserver`
-
-Ensuite aller à l'adresse localhost:8000
+6. Aller à l'adresse localhost:8000
 
