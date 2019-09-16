@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="coop de france, ineris, simuation, decouplage, silo">
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
+  <link rel="stylesheet" id="css-main" href="{% static 'assets/js/plugins/select2/css/select2.min.css' %}">
+  <link rel="stylesheet" id="css-main" href="{% static 'assets/css/codebase.min.css' %}">
+  <link href="{% static 'css/custom.css' %}?{% now "YmdH" %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css' %}">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}">
+
+
+  {% block head_extra %}
+
+  {% endblock %}
+</head>
+<body>
+{% block body %}
+  <div id="page-container" class=" side-scroll  main-content-boxed">
+    <main id="main-container">
+      <div class="content content-full">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissable">{{ message|safe }}</div>
+        {% endfor %}
+        {% block content %}
+
+        {% endblock %}
+      </div>
+    </main>
+  </div>
+{% endblock %}
+<script src="{% static 'assets/js/codebase.core.min.js' %}"></script>
+<script src="{% static 'assets/js/codebase.app.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+<script>
+  $("input").addClass('form-control')
+  $("input[name*='date']").datepicker({format: 'dd/mm/yyyy'});
+</script>
+</body>
+</html>

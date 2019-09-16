@@ -1,0 +1,14 @@
+#header, .module h2, .module caption, .inline-group h2 {
+    background-color: #537895;
+    background-image: linear-gradient(315deg, #537895 0%, #09203f 74%);
+    color: white;
+}
+
+div.breadcrumbs {
+    background-color: #537895;
+}
+
+#site-name a {
+    color: white !important;
+    font-weight: 600;
+}

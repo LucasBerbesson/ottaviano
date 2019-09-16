@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <div class="content">
+    <div class="my-50 text-center">
+      <h2 class="font-w700 text-black mb-10">Book a stay</h2>
+      <h3 class="h5 text-muted mb-0">{{ appartment.name }}</h3>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="block block-fx-shadow">
+          <div class="block-content tab-content">
+            {% if form.errors %}
+              {% for field in form %}
+                {% for error in field.errors %}
+                  <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                  </div>
+                {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                  <strong>{{ error|escape }}</strong>
+                </div>
+              {% endfor %}
+            {% endif %}
+
+            <form action="" method="post"> {% csrf_token %}
+              {% for field in form %}
+                <div class="form-group">
+                  {{ field.label_tag }}
+                  {{ field }}
+                  {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                </div>
+              {% endfor %}
+              <div class="form-group">
+                <button type="submit" class="btn btn-hero btn-lg btn-block btn-alt-primary">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

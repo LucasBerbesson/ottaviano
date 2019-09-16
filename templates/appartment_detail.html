@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+  <div class="content">
+    <div class="my-50 text-center">
+      <h2 class="font-w700 text-black mb-10">
+        {{ appartment.name }}
+      </h2>
+      <h3 class="h5 text-muted mb-0">
+        <i class="fa fa-map-pin mr-5"></i> {{ appartment.full_address }}
+      </h3>
+    </div>
+    <div class="block block-rounded block-fx-shadow">
+      <div class="block-content p-0 bg-image">
+        {% if appartment.cover_picture.url %}
+          <img src="{{ appartment.cover_picture.url }}" class="img-fluid" alt="">
+        {% else %}
+          <p class="lead text-center py-100 m-0">No cover picture</p>
+        {% endif %}
+      </div>
+      <div class="block-content bg-body-light">
+        <div class="row py-10">
+          <div class="col-6 col-md-4">
+            <p>
+              <i class="fa fa-fw fa-bed text-muted mr-5"></i> <strong>{{ appartment.nb_bedrooms }}</strong> Bedrooms
+            </p>
+          </div>
+          <div class="col-6 col-md-4">
+            <p>
+              <i class="fa fa-fw fa-bath text-muted mr-5"></i> <strong>{{ appartment.nb_bathrooms }}</strong> Bathroom
+            </p>
+          </div>
+          <div class="col-6 col-md-4">
+            <p>
+              <i class="fa fa-fw fa-arrows-alt text-muted mr-5"></i> <strong>{{ appartment.surface }}</strong> m2
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="block-content block-content-full">
+        <div class="row">
+          <div class="col-md-6 order-md-2 py-20">
+            <div class="row gutters-tiny js-gallery img-fluid-100 js-gallery-enabled">
+              {% for appartmentimage in appartment.images.all %}
+                <div class="col-6">
+                  <a class="img-link img-link-simple img-thumb img-lightbox" href="{{ appartmentimage.image.url }}">
+                    <img class="img-fluid" src="{{ appartmentimage.image.url }}">
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="col-md-6 order-md-1 py-20">
+            {{ appartment.description | linebreaksbr }}
+          </div>
+        </div>
+      </div>
+      {% if appartment.is_bookable %}
+        <div class="block-content block-content-full text-center border-top clearfix">
+          <a class="btn btn-hero btn-alt-primary" href="{% url 'reservation-create' appartment.slug %}">
+            <i class="fa fa-calendar mr-5"></i> Book a stay
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
